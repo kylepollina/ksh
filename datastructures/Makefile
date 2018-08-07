@@ -3,6 +3,6 @@
 all: ds
 
 ds: datastructures.c linkedlist.c
-	gcc -g -Wall -o datastructures datastructures.c linkedlist.c
+	gcc -g -Wall -o ds datastructures.c linkedlist.c
 
 
