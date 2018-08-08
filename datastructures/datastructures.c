@@ -5,7 +5,10 @@
 #include <stdlib.h>
 #include <stdio.h>
 #include <string.h>
-#include "include/linkedlist.h"
+#include "include/datastructures.h"
+
+struct linkedlist *list;
+bool linkedlist_exists = FALSE;
 
 int main(void)
 {
@@ -24,19 +27,30 @@ int main(void)
 
 		// help or HELP inputted
 		if(strcmp(str, "help") == 0 || strcmp(str, "HELP") == 0){
-			printf("To create a linked list type 'cl'\n");
-			printf("To add to a linked list type ...\n");
+			printf("To create a linked list type lc\n");
+			printf("To add to a linked list type la <number>\n");
 			printf("Type Q to quit\n\n");
 		}
 
 		// create linked list
-		if(strcmp(str, "cl") == 0){
-			if(create_linkedlist() == 0)
-				printf("Linked list created\n");
-			else
+		if(strcmp(str, "lc") == 0){
+			if(linkedlist_exists == TRUE)
 				printf("Linked list already created\n");
+			else {
+				linkedlist_exists = TRUE;
+				list = new_linkedlist();
+				printf("Linked list successfully created\n");
+			}
 		}
 
+		// add to a linked list
+		if(strcmp(str, "la") == 0){
+			printf("Enter numbers you would like to add to the linked list. When finished, enter f\n");
+			printf("add>");
+
+			scanf("%s", str);
+			
+		}
 		printf(">");
 		scanf("%s", str);	// wait for user input
 	}  

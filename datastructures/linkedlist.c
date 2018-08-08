@@ -6,37 +6,40 @@
 #include <stdio.h>
 #include "include/linkedlist.h"
 
-bool linkedlist_exists = FALSE;
-struct linkedlist list;
-
-int create_linkedlist()
+linkedlist_t *new_linkedlist()
 {
-	// if list has already been created
-	if(linkedlist_exists == TRUE)
-		return -1;
-	else {
-		linkedlist_exists = TRUE;
-		
-		node_t *head, *tail = NULL;
-		head = (node_t *)malloc(sizeof(node_t));
-		tail = (node_t *)malloc(sizeof(node_t));
+	linkedlist_t *list;
+	list = (linkedlist_t *)malloc(sizeof(linkedlist_t));
+	
+	node_t *head, *tail = NULL;
+	head = (node_t *)malloc(sizeof(node_t));
+	tail = (node_t *)malloc(sizeof(node_t));
 
-		head->next = tail;
-		head->prev = NULL;
-		tail->next = NULL;
-		tail->prev = head;
+	head->next = tail;
+	head->prev = NULL;
+	tail->next = NULL;
+	tail->prev = head;
 
-		list.head = head;
-		list.tail = tail;
-	}
+	list->head = head;
+	list->tail = tail;
 
-	return 0;
+	return list;
 }
 
-int add(int value)
-{
-	if(linkedlist_exists == FALSE)
-		return -1;
+/* int add(linkedlist list, int value) */
+/* { */
+/* 	if(linkedlist_exists == FALSE) */
+/* 		return -1; */
+/* 	else { */
+/* 		node_t *new_node = NULL; */
+/* 		new_node = (node_t *)malloc(sizeof(node_t)); */
 
-	return 0;	
-}
+/* 		new_node->value = value; */
+/* 		new_node->prev = list.tail->prev; */
+/* 		new_node->next = list.tail; */
+/* 		list.tail->prev->next = new_node; */
+/* 		list.tail->prev = new_node; */
+/* 	} */	
+
+/* 	return 0; */	
+/* } */

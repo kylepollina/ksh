@@ -1,9 +1,5 @@
 // linkedlist.h
 typedef int bool;
-#define FALSE	0
-#define TRUE	1
-
-int create_linkedlist();
 
 typedef struct node {
 	int value;
@@ -14,4 +10,7 @@ typedef struct node {
 typedef struct linkedlist {
 	node_t *head;
 	node_t *tail;
-} linkedlist;
+} linkedlist_t;
+
+
+struct linkedlist *new_linkedlist();
