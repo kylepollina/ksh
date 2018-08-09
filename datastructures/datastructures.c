@@ -28,7 +28,8 @@ int main(void)
 		// help or HELP inputted
 		if(strcmp(str, "help") == 0 || strcmp(str, "HELP") == 0){
 			printf("To create a linked list type lc\n");
-			printf("To add to a linked list type la <number>\n");
+			printf("To add to a linked list type la\n");
+			printf("To print linked list type	 lp\n");
 			printf("Type Q to quit\n\n");
 		}
 
@@ -38,19 +39,38 @@ int main(void)
 				printf("Linked list already created\n");
 			else {
 				linkedlist_exists = TRUE;
-				list = new_linkedlist();
+				list = new_linkedlist(ID_INT);		// creates an integer linked list
 				printf("Linked list successfully created\n");
 			}
 		}
 
 		// add to a linked list
-		if(strcmp(str, "la") == 0){
+		if(strcmp(str, "la") == 0 && list == NULL) 
+			printf("Linked list does not exist\n");
+
+		else if(strcmp(str, "la") == 0) {
 			printf("Enter numbers you would like to add to the linked list. When finished, enter f\n");
 			printf("add>");
 
 			scanf("%s", str);
-			
+
+			while(!(strcmp(str, "f") == 0 || strcmp(str, "F") == 0)) {
+				if(linkedlist_add_int(list, atoi(str)) == -1)
+					printf("Error adding value\n");
+				printf("add>");
+
+				scanf("%s", str);
+			}
 		}
+
+		// print linked list
+		if(strcmp(str, "lp") == 0) {
+			printf("Printing linked list...\n");
+			linkedlist_print(list);
+		}
+
+
+
 		printf(">");
 		scanf("%s", str);	// wait for user input
 	}  
