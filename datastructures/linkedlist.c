@@ -57,6 +57,8 @@ int linkedlist_add_int(linkedlist_t *list, int value)
 
 //TODO int linkedlist_add_str()
 
+//TODO int linkedlist_del_int()
+
 void linkedlist_print(linkedlist_t *list)
 {
 	if(list == NULL){
