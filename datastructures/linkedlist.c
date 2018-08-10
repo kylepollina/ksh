@@ -7,12 +7,10 @@
 #include "include/linkedlist.h"
 
 // returns a pointer to newly created linked list
-//	id - identifier for what type of value is stored in linked list (string/int)
-linkedlist_t *new_linkedlist(int id)
+list_t *new_list()
 {
-	linkedlist_t *list;
-	list = (linkedlist_t *)malloc(sizeof(linkedlist_t));
-	list->id = id;
+	list_t *list;
+	list = (list_t *)malloc(sizeof(list_t));
 	
 	node_t *head, *tail = NULL;
 	head = (node_t *)malloc(sizeof(node_t));
@@ -30,53 +28,46 @@ linkedlist_t *new_linkedlist(int id)
 }
 
 // adds the given value to the given linked list
-int linkedlist_add_int(linkedlist_t *list, int value)
+int list_add_int(list_t *list, int value)
 {
 	if(list == NULL)
 		return ERR;
 	
+	node_t *new_node = NULL;
+	new_node = (node_t *)malloc(sizeof(node_t));
 
-	if(list->id == ID_INT){
-		node_t *new_node = NULL;
-		new_node = (node_t *)malloc(sizeof(node_t));
-
-		new_node->value = value;
-		new_node->prev = list->tail->prev;
-		new_node->next = list->tail;
-		list->tail->prev->next = new_node;
-		list->tail->prev = new_node;
-	}
-	else 
-		return ERR;
+	new_node->id = ID_INT;
+	new_node->value = value;
+	new_node->prev = list->tail->prev;
+	new_node->next = list->tail;
+	list->tail->prev->next = new_node;
+	list->tail->prev = new_node;
 
 	return 0;
 }
 
 // adds the given string to the given linked list
-int linkedlist_add_str(linkedlist_t *list, char *str)
+int list_add_str(list_t *list, char *str)
 {
 	if(list == NULL)
 		return ERR;
 
-	if(list->id == ID_STR){
-		node_t *new_node = NULL;
-		new_node = (node_t *)malloc(sizeof(node_t));
+	node_t *new_node = NULL;
+	new_node = (node_t *)malloc(sizeof(node_t));
 
-		new_node->str = str;
-		new_node->prev = list->tail->prev;
-		new_node->next = list->tail;
-		list->tail->prev->next = new_node;
-		list->tail->prev = new_node;
-	}
-	else 
-		return ERR;
+	new_node->id = ID_STR;
+	new_node->str = str;
+	new_node->prev = list->tail->prev;
+	new_node->next = list->tail;
+	list->tail->prev->next = new_node;
+	list->tail->prev = new_node;
 
 	return 0;
 
 }
 
 // removes the first element in the linked list (not including the head or tail)
-int linkedlist_remove_first(linkedlist_t *list)
+int list_remove_first(list_t *list)
 {
 	if(list == NULL)
 		return ERR;
@@ -93,7 +84,7 @@ int linkedlist_remove_first(linkedlist_t *list)
 }
 
 // removes the last element in the linked list (not including the head or tail)
-int linkedlist_remove_last(linkedlist_t *list)
+int list_remove_last(list_t *list)
 {
 	if(list == NULL)
 		return ERR;
@@ -109,27 +100,31 @@ int linkedlist_remove_last(linkedlist_t *list)
 	return 0;
 }
 
-int linkedlist_remove_int(linkedlist_t *list, int value)
+int list_remove_int(list_t *list, int value)
 {
-	if(list == NULL || list->id != ID_INT)
+	if(list == NULL)
 		return ERR;
 
 	node_t *temp = list->head->next;
 
 	while(temp != list->tail){
-		if(value == temp->value){
-			temp->prev->next = temp->next;
-			temp->next->prev = temp->prev;
-			free(temp);
+		if(temp->id == ID_INT){
+			if(value == temp->value){
+				temp->prev->next = temp->next;
+				temp->next->prev = temp->prev;
+				free(temp);
 
-			return 0;
-		}
+				return 0;
+			}
+		}	
 	}
 
 	return ERR;
 }
 
-node_t *linkedlist_get(linkedlist_t *list, int index)
+//TODO int list_remove_str(list_t *list, char *str)
+
+node_t *list_get(list_t *list, int index)
 {
 	node_t *temp = list->head->next;
 
@@ -143,7 +138,7 @@ node_t *linkedlist_get(linkedlist_t *list, int index)
 	return temp;
 }
 
-int linkedlist_length(linkedlist_t *list)
+int list_length(list_t *list)
 {
 	node_t *temp = list->head;
 
@@ -159,7 +154,7 @@ int linkedlist_length(linkedlist_t *list)
 //TODO int linkedlist_remove_str(linkedlist_t *list, char *str)
 //TODO int linkedlist_sort(linkedlist_t *list);
 
-void linkedlist_print(linkedlist_t *list)
+void list_print(list_t *list)
 {
 	if(list == NULL)
 		return;

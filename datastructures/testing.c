@@ -7,7 +7,7 @@
 #include <string.h>
 #include "include/datastructures.h"
 
-linkedlist_t *list;
+list_t *list;
 bool linkedlist_exists = FALSE;
 
 int main(void)
@@ -40,7 +40,7 @@ int main(void)
 				printf("Linked list already created\n");
 			else {
 				linkedlist_exists = TRUE;
-				list = new_linkedlist(ID_INT);		// creates an integer linked list
+				list = new_list();		// creates an integer linked list
 				printf("Linked list successfully created\n");
 			}
 		}
@@ -56,7 +56,7 @@ int main(void)
 			scanf("%s", str);
 
 			while(!(strcmp(str, "f") == 0 || strcmp(str, "F") == 0)) {
-				if(linkedlist_add_int(list, atoi(str)) == -1)
+				if(list_add_int(list, atoi(str)) == -1)
 					printf("Error adding value\n");
 				printf("add>");
 
@@ -66,7 +66,7 @@ int main(void)
 
 		if(strcmp(str, "lrl") == 0){
 			printf("Removing last element in list...\n");
-			if(linkedlist_remove_last(list) == 0)
+			if(list_remove_last(list) == 0)
 				printf("Successful removal of last element in list\n");
 			else
 				printf("Failed...\n");
@@ -74,7 +74,7 @@ int main(void)
 
 		if(strcmp(str, "lrf") == 0){
 			printf("Removing first element in list...\n");
-			if(linkedlist_remove_first(list) == 0)
+			if(list_remove_first(list) == 0)
 				printf("Successful removal of first element in list\n");
 			else
 				printf("Failed...\n");
@@ -87,7 +87,7 @@ int main(void)
 		// print linked list
 		if(strcmp(str, "lp") == 0) {
 			printf("Printing linked list...\n");
-			linkedlist_print(list);
+			list_print(list);
 		}
 
 

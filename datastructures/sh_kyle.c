@@ -4,6 +4,7 @@
 
 #include <stdio.h>
 #include <stdlib.h>
+#include <string.h>
 #include "include/sh_kyle.h"
 
 int main(void)
@@ -25,7 +26,7 @@ int main(void)
 void run()
 {
 	char *input_str = malloc(sizeof(char) * 1024); 
-	linkedlist_t *input = new_linkedlist();
+	list_t *input = new_list();
 	
 	printf("sh_kyle >");
 
