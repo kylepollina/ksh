@@ -1,8 +1,11 @@
  # Makefile for Cracking the Coding interview questions 
 
-all: ds
+all: ds sh
 
-ds: datastructures.c linkedlist.c
-	gcc -g -Wall -o ds datastructures.c linkedlist.c
+ds: testing.c linkedlist.c
+	gcc -g -Wall -o ds testing.c linkedlist.c
+
+#sh: sh_kyle.c linkedlist.c
+#gcc -g -Wall -o sh sh_kyle.c linkedlist.c
 
 

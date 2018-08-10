@@ -1,13 +1,13 @@
-/*	datastructures.c
-	Kyle Pollina
-*/
+// testing.c
+//  program to test datastructures
+//  Kyle Pollina
 
 #include <stdlib.h>
 #include <stdio.h>
 #include <string.h>
 #include "include/datastructures.h"
 
-struct linkedlist *list;
+linkedlist_t *list;
 bool linkedlist_exists = FALSE;
 
 int main(void)
@@ -15,6 +15,7 @@ int main(void)
 	printf("Cracking the Coding Interview Practice: Datastructures\n");
 	printf("Author: Kyle Pollina\n");
 	printf("======================================================\n\n");
+
 
 	printf("Type help for more information. Type Q to quit\n\n");	
 	printf(">");
@@ -62,6 +63,26 @@ int main(void)
 				scanf("%s", str);
 			}
 		}
+
+		if(strcmp(str, "lrl") == 0){
+			printf("Removing last element in list...\n");
+			if(linkedlist_remove_last(list) == 0)
+				printf("Successful removal of last element in list\n");
+			else
+				printf("Failed...\n");
+		}
+
+		if(strcmp(str, "lrf") == 0){
+			printf("Removing first element in list...\n");
+			if(linkedlist_remove_first(list) == 0)
+				printf("Successful removal of first element in list\n");
+			else
+				printf("Failed...\n");
+		}
+
+
+
+
 
 		// print linked list
 		if(strcmp(str, "lp") == 0) {
