@@ -19,9 +19,10 @@ typedef struct linkedlist {
 	node_t *tail;
 } list_t;
 
-list_t	*new_list(int id);
-int		list_add_int(list_t *list, int value);
-int		list_add_str(list_t *list, char str[]);
-int		list_remove_first(list_t *list);
-int		list_remove_last(list_t *list);
-void	print_list(list_t *list);
+list_t	*newList(int id);
+int		listAddInt(list_t *list, int value);
+int		listAddStr(list_t *list, char str[]);
+int		listRemoveFirst(list_t *list);
+int		listRemoveLast(list_t *list);
+node_t  *listGet(list_t *list, int index);
+void	printList(list_t *list);

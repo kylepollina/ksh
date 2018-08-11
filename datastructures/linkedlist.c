@@ -8,7 +8,7 @@
 #include "include/linkedlist.h"
 
 // returns a pointer to newly created linked list
-list_t *new_list(int id)
+list_t *newList(int id)
 {
 	list_t *list;
 	list = (list_t *)malloc(sizeof(list_t));
@@ -30,7 +30,7 @@ list_t *new_list(int id)
 }
 
 // adds the given value to the given linked list
-int list_add_int(list_t *list, int value)
+int listAddInt(list_t *list, int value)
 {
 	if(list == NULL)
 		return ERR;
@@ -50,7 +50,7 @@ int list_add_int(list_t *list, int value)
 }
 
 // adds the given string to the given linked list
-int list_add_str(list_t *list, char str[])
+int listAddStr(list_t *list, char str[])
 {
 	if(list == NULL)
 		return ERR;
@@ -74,7 +74,7 @@ int list_add_str(list_t *list, char str[])
 }
 
 // removes the first element in the linked list (not including the head or tail)
-int list_remove_first(list_t *list)
+int listRemoveFirst(list_t *list)
 {
 	if(list == NULL)
 		return ERR;
@@ -92,7 +92,7 @@ int list_remove_first(list_t *list)
 }
 
 // removes the last element in the linked list (not including the head or tail)
-int list_remove_last(list_t *list)
+int listRemoveLast(list_t *list)
 {
 	if(list == NULL)
 		return ERR;
@@ -110,7 +110,7 @@ int list_remove_last(list_t *list)
 }
 
 //TODO document
-int list_remove_int(list_t *list, int value)
+int listRemoveInt(list_t *list, int value)
 {
 	if(list == NULL)
 		return ERR;
@@ -134,7 +134,7 @@ int list_remove_int(list_t *list, int value)
 
 //TODO int list_remove_str(list_t *list, char *str)
 
-node_t *list_get(list_t *list, int index)
+node_t *listGet(list_t *list, int index)
 {
 	node_t *temp = list->head->next;
 
@@ -164,7 +164,7 @@ int list_length(list_t *list)
 //TODO int linkedlist_remove_str(linkedlist_t *list, char *str)
 //TODO int linkedlist_sort(linkedlist_t *list);
 
-void print_list(list_t *list)
+void printList(list_t *list)
 {
 	if(list == NULL)
 		return;

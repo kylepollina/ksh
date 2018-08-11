@@ -27,9 +27,12 @@ void run()
 	printf("sh_kyle>> ");
 	fgets(input_str, MAXBUF, stdin);
 
-	list_t *input = parse_input(input_str);
+	list_t *input = stringToList(input_str);
 
-	print_list(input);
+	printList(input);
+
+
+
 
 	/* if(strcmp(input_str, "help") == 0 || strcmp(input_str, "HELP") == 0){ */
 	/* 	printf("sh_kyle Copyright Kyle Pollina 2018\n"); */
@@ -43,40 +46,3 @@ void run()
 
 }
 
-//TODO documentation. also thinking of seperating this function entirely
-list_t *parse_input(char *input_str)
-{
-	list_t *input = new_list(ID_STR);
-
-	int word_start = 0;
-	int word_length;
-	char letter;
-	int length = strlen(input_str);
-
-	for(int i = 0; i < length; i++){
-		letter = input_str[i];
-		word_length = i - word_start;
-		bool is_int = TRUE;
-
-		if(isdigit(letter) == FALSE)
-			is_int = FALSE;
-
-		// end of a word
-		if(letter == ' ' || letter == 10){
-			char substring[word_length];
-			memcpy(substring, &input_str[word_start], word_length);
-			substring[word_length] = '\0';
-
-
-			if(is_int == TRUE)
-				list_add_int(input, atoi(substring));
-			else
-				list_add_str(input, substring);
-
-			word_start = i + 1;
-			word_length = 0;
-		}
-	}
-
-	return input;
-}
