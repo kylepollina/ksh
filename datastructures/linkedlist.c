@@ -4,13 +4,15 @@
 
 #include <stdlib.h>
 #include <stdio.h>
+#include <string.h>
 #include "include/linkedlist.h"
 
 // returns a pointer to newly created linked list
-list_t *new_list()
+list_t *new_list(int id)
 {
 	list_t *list;
 	list = (list_t *)malloc(sizeof(list_t));
+	list->id = id;
 	
 	node_t *head, *tail = NULL;
 	head = (node_t *)malloc(sizeof(node_t));
@@ -32,11 +34,12 @@ int list_add_int(list_t *list, int value)
 {
 	if(list == NULL)
 		return ERR;
-	
+	if(list->id != ID_INT)
+		return ERR;
+
 	node_t *new_node = NULL;
 	new_node = (node_t *)malloc(sizeof(node_t));
 
-	new_node->id = ID_INT;
 	new_node->value = value;
 	new_node->prev = list->tail->prev;
 	new_node->next = list->tail;
@@ -47,16 +50,20 @@ int list_add_int(list_t *list, int value)
 }
 
 // adds the given string to the given linked list
-int list_add_str(list_t *list, char *str)
+int list_add_str(list_t *list, char str[])
 {
 	if(list == NULL)
+		return ERR;
+	if(list->id != ID_STR)
 		return ERR;
 
 	node_t *new_node = NULL;
 	new_node = (node_t *)malloc(sizeof(node_t));
 
-	new_node->id = ID_STR;
-	new_node->str = str;
+	char *new_str = (char *)malloc(sizeof(char *) * strlen(str));
+	memcpy(new_str, str, strlen(str) + 1);
+
+	new_node->str = new_str;
 	new_node->prev = list->tail->prev;
 	new_node->next = list->tail;
 	list->tail->prev->next = new_node;
@@ -78,6 +85,7 @@ int list_remove_first(list_t *list)
 	node_t *temp = list->head->next;
 	list->head->next = temp->next;
 	temp->next->prev = list->head;
+	free(temp->str);
 	free(temp);
 
 	return 0;
@@ -95,28 +103,30 @@ int list_remove_last(list_t *list)
 	node_t *temp = list->tail->prev;
 	list->tail->prev = temp->prev;
 	temp->prev->next = list->tail;
+	free(temp->str);
 	free(temp);
 
 	return 0;
 }
 
+//TODO document
 int list_remove_int(list_t *list, int value)
 {
 	if(list == NULL)
+		return ERR;
+	if(list->id != ID_INT)
 		return ERR;
 
 	node_t *temp = list->head->next;
 
 	while(temp != list->tail){
-		if(temp->id == ID_INT){
-			if(value == temp->value){
-				temp->prev->next = temp->next;
-				temp->next->prev = temp->prev;
-				free(temp);
+		if(value == temp->value){
+			temp->prev->next = temp->next;
+			temp->next->prev = temp->prev;
+			free(temp);
 
-				return 0;
-			}
-		}	
+			return 0;
+		}
 	}
 
 	return ERR;
@@ -154,7 +164,7 @@ int list_length(list_t *list)
 //TODO int linkedlist_remove_str(linkedlist_t *list, char *str)
 //TODO int linkedlist_sort(linkedlist_t *list);
 
-void list_print(list_t *list)
+void print_list(list_t *list)
 {
 	if(list == NULL)
 		return;
@@ -164,7 +174,11 @@ void list_print(list_t *list)
 	printf(" H <-> ");
 
 	while(temp != list->tail) {
-		printf("%d <-> ", temp->value);
+		if(list->id == ID_INT)
+			printf("%d <-> ", temp->value);
+		else if(list->id == ID_STR)
+			printf("%s <-> ", temp->str);
+
 		temp = temp->next;
 	}
 
