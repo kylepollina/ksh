@@ -34,6 +34,7 @@ list_t *stringToList(char *input_str)
 
 			word_start = i + 1;
 			word_length = 0;
+			is_int = TRUE;
 		}
 	}
 
