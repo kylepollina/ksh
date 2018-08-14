@@ -8,11 +8,10 @@
 #include "include/linkedlist.h"
 
 // returns a pointer to newly created linked list
-list_t *newList(int id)
+list_t *newList()
 {
 	list_t *list;
 	list = (list_t *)malloc(sizeof(list_t));
-	list->id = id;
 	
 	node_t *head, *tail = NULL;
 	head = (node_t *)malloc(sizeof(node_t));
@@ -34,12 +33,11 @@ int listAddInt(list_t *list, int value)
 {
 	if(list == NULL)
 		return ERR;
-	if(list->id != ID_INT)
-		return ERR;
 
 	node_t *new_node = NULL;
 	new_node = (node_t *)malloc(sizeof(node_t));
 
+	new_node->id = ID_INT;
 	new_node->value = value;
 	new_node->prev = list->tail->prev;
 	new_node->next = list->tail;
@@ -54,8 +52,6 @@ int listAddStr(list_t *list, char str[])
 {
 	if(list == NULL)
 		return ERR;
-	if(list->id != ID_STR)
-		return ERR;
 
 	node_t *new_node = NULL;
 	new_node = (node_t *)malloc(sizeof(node_t));
@@ -63,6 +59,7 @@ int listAddStr(list_t *list, char str[])
 	char *new_str = (char *)malloc(sizeof(char *) * strlen(str));
 	memcpy(new_str, str, strlen(str) + 1);
 
+	new_node->id = ID_STR;
 	new_node->str = new_str;
 	new_node->prev = list->tail->prev;
 	new_node->next = list->tail;
@@ -114,12 +111,10 @@ int listRemoveInt(list_t *list, int value)
 {
 	if(list == NULL)
 		return ERR;
-	if(list->id != ID_INT)
-		return ERR;
 
 	node_t *temp = list->head->next;
 
-	while(temp != list->tail){
+	while(temp != list->tail && temp->id == ID_INT){
 		if(value == temp->value){
 			temp->prev->next = temp->next;
 			temp->next->prev = temp->prev;
@@ -174,10 +169,10 @@ void printList(list_t *list)
 	printf(" H <-> ");
 
 	while(temp != list->tail) {
-		if(list->id == ID_INT)
-			printf("%d <-> ", temp->value);
-		else if(list->id == ID_STR)
-			printf("%s <-> ", temp->str);
+		if(temp->id == ID_INT)
+			printf("%d(i) <-> ", temp->value);
+		else if(temp->id == ID_STR)
+			printf("%s(s) <-> ", temp->str);
 
 		temp = temp->next;
 	}

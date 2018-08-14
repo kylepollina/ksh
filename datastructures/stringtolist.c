@@ -1,3 +1,8 @@
+// stringtolist.c
+//  converts a string into a linked list of individual nodes of words
+//  Kyle Pollina
+
+#include <stdio.h>
 #include <stdlib.h>
 #include <string.h>
 #include <ctype.h>
@@ -5,38 +10,73 @@
 
 list_t *stringToList(char *input_str)
 {
-	list_t *input = newList(ID_STR);
+	list_t *input = newList();
 
 	int word_start = 0;
-	int word_length;
+	int word_len;
 	char letter;
 	int length = strlen(input_str);
+	bool is_int = TRUE;
 
 	for(int i = 0; i < length; i++){
 		letter = input_str[i];
-		word_length = i - word_start;
-		bool is_int = TRUE;
+		word_len = i - word_start;
 
-		if(isdigit(letter) == FALSE)
+		if(!(letter == ' ' || letter == 10) && isdigit(letter) == FALSE)
 			is_int = FALSE;
 
-		// end of a word
+		//end of word
 		if(letter == ' ' || letter == 10){
-			char substring[word_length];
-			memcpy(substring, &input_str[word_start], word_length);
-			substring[word_length] = '\0';
+			char substring[word_len];
+			memcpy(substring, &input_str[word_start], word_len);
+			substring[word_len] = '\0';
 
-
-			if(is_int == TRUE)
-				listAddInt(input, atoi(substring));
-			else
+			if(is_int == TRUE){
+				listAddInt(input, atoi(substring));	
+			}
+			else{
 				listAddStr(input, substring);
+			}
 
 			word_start = i + 1;
-			word_length = 0;
+			word_len = 0;
 			is_int = TRUE;
 		}
-	}
+	}	
 
 	return input;
 }
+
+
+
+
+
+
+		/* if(isdigit(letter) == FALSE){ */
+		/* 	is_int = FALSE; */
+		/* 	printf("the character %c is not a digit\n", letter); */
+		/* 	} */
+
+		/* // end of a word */
+		/* if(letter == ' ' || letter == 10){ */
+		/* 	char substring[word_length]; */
+		/* 	memcpy(substring, &input_str[word_start], word_length); */
+		/* 	substring[word_length] = '\0'; */
+
+
+		/* 	if(is_int == TRUE){ */
+		/* 		listAddInt(input, atoi(substring)); */
+		/* 		printf("adding int\n"); */
+		/* 	} */
+		/* 	else{ */
+		/* 		listAddStr(input, substring); */
+		/* 		printf("adding string\n"); */
+		/* 	} */
+
+		/* 	word_start = i + 1; */
+		/* 	word_length = 0; */
+		/* 	is_int = TRUE; */
+		/* } */
+	/* } */
+
+	/* return input; */
