@@ -2,7 +2,12 @@
 //	doubly linked list capable of storing strings or integers
 //  Kyle Pollina
 
+#include <stdlib.h>
+#include <string.h>
+#include <ctype.h>
+#include <stdio.h>
 #include "defaults.h"
+
 #define ID_INT	0
 #define ID_STR	1
 

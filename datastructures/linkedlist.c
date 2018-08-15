@@ -1,10 +1,7 @@
 // linkedlist.c
-//  doubly linked list datastructure
+//  doubly linked list datastructure holding node structs
 //  Kyle Pollina
 
-#include <stdlib.h>
-#include <stdio.h>
-#include <string.h>
 #include "include/linkedlist.h"
 
 // returns a pointer to newly created linked list
@@ -28,7 +25,7 @@ list_t *newList()
 	return list;
 }
 
-// adds the given value to the given linked list
+// adds the given int value to the given linked list
 int listAddInt(list_t *list, int value)
 {
 	if(list == NULL)

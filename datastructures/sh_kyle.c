@@ -31,18 +31,11 @@ void run()
 
 	printList(input);
 
+	if(strcmp(input_str, "help") == 0 || strcmp(input_str, "HELP") == 0){
+		printf("sh_kyle Copyright Kyle Pollina 2018\n");
+		printf("These are the commands you can run...\n\n");
 
-
-
-	/* if(strcmp(input_str, "help") == 0 || strcmp(input_str, "HELP") == 0){ */
-	/* 	printf("sh_kyle Copyright Kyle Pollina 2018\n"); */
-	/* 	printf("These are the commands you can run...\n\n"); */
-
-	/* 	printf("create list\t\t\tCreates a linked list\n"); */
-	/* } */			
-
-	/* printf("sh_kyle>> "); */
-	/* scanf("%s", input_str); */
-
+		printf("create list\t\t\tCreates a linked list\n");
+	}			
 }
 

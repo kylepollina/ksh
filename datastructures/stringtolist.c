@@ -2,10 +2,6 @@
 //  converts a string into a linked list of individual nodes of words
 //  Kyle Pollina
 
-#include <stdio.h>
-#include <stdlib.h>
-#include <string.h>
-#include <ctype.h>
 #include "include/linkedlist.h"
 
 list_t *stringToList(char *input_str)
@@ -27,15 +23,17 @@ list_t *stringToList(char *input_str)
 
 		//end of word
 		if(letter == ' ' || letter == 10){
-			char substring[word_len];
+			char substring[word_len + 1];
 			memcpy(substring, &input_str[word_start], word_len);
 			substring[word_len] = '\0';
 
-			if(is_int == TRUE){
-				listAddInt(input, atoi(substring));	
-			}
-			else{
-				listAddStr(input, substring);
+			if(word_len != 0){
+				if(is_int == TRUE){
+					listAddInt(input, atoi(substring));	
+				}
+				else{
+					listAddStr(input, substring);
+				}
 			}
 
 			word_start = i + 1;
@@ -47,36 +45,3 @@ list_t *stringToList(char *input_str)
 	return input;
 }
 
-
-
-
-
-
-		/* if(isdigit(letter) == FALSE){ */
-		/* 	is_int = FALSE; */
-		/* 	printf("the character %c is not a digit\n", letter); */
-		/* 	} */
-
-		/* // end of a word */
-		/* if(letter == ' ' || letter == 10){ */
-		/* 	char substring[word_length]; */
-		/* 	memcpy(substring, &input_str[word_start], word_length); */
-		/* 	substring[word_length] = '\0'; */
-
-
-		/* 	if(is_int == TRUE){ */
-		/* 		listAddInt(input, atoi(substring)); */
-		/* 		printf("adding int\n"); */
-		/* 	} */
-		/* 	else{ */
-		/* 		listAddStr(input, substring); */
-		/* 		printf("adding string\n"); */
-		/* 	} */
-
-		/* 	word_start = i + 1; */
-		/* 	word_length = 0; */
-		/* 	is_int = TRUE; */
-		/* } */
-	/* } */
-
-	/* return input; */
