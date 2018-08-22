@@ -24,18 +24,62 @@ void run()
 {
 	char *input_str = malloc(sizeof(char) * MAXBUF); 
 	
-	printf("sh_kyle>> ");
-	fgets(input_str, MAXBUF, stdin);
+	while(TRUE){
+		printf("sh_kyle>> ");
+		fgets(input_str, MAXBUF, stdin);
+		list_t *input = stringToList(input_str);
 
-	list_t *input = stringToList(input_str);
+		if(listLength(input) >= 1){
+			node_t *first = input->head->next;
 
-	printList(input);
+			if(strcmp(first->str, "q") == 0 || strcmp(first->str, "Q") == 0)
+				break;
+			
+			process_input(input);
+		}	
 
-	if(strcmp(input_str, "help") == 0 || strcmp(input_str, "HELP") == 0){
-		printf("sh_kyle Copyright Kyle Pollina 2018\n");
-		printf("These are the commands you can run...\n\n");
+		else
+			printf("WOOOPS\n");
+	} 
 
-		printf("create list\t\t\tCreates a linked list\n");
-	}			
+	free(input_str);
 }
 
+//TODO document
+void process_input(list_t *input)
+{
+	printf("begin pi\n");
+	node_t *first = input->head->next;
+	int numargs = listLength(input) - 1;
+
+	/* printf("id: %x\n", first->id); */
+
+	if(first->id == ID_STR){
+		// HELP
+		if(strcmp(first->str, "help") == 0 || strcmp(first->str, "HELP") == 0){
+			if(numargs >= 1){
+				node_t *arg1 = first->next;
+
+				if(arg1->id == ID_STR && strcmp(arg1->str, "create") == 0){
+					printf("--create: Create can be used to create a datastructure.\n");
+					printf("--To create a doubly linked use the command\n");
+					printf("	create list\n");
+				}
+
+				else{
+					printf("--help: argument not recognized\n");
+				}
+			}
+			
+			else{
+				printf("\nsh_kyle Copyright Kyle Pollina 2018\n");
+				printf("These are the commands you can run...\n\n");
+
+				printf(" create <arg>\t\t\tCreates the given datastructure\n");
+				printf(" -create list\t\t\tCreates a doubly linked list\n");
+				printf("\nYou can also run 'help <command>' on any of the above commands\n");
+			}			 
+		}
+	}	
+	else if(first->id == ID_INT){}
+}

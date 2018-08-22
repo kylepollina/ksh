@@ -42,6 +42,8 @@ list_t *stringToList(char *input_str)
 		}
 	}	
 
+	printf("end stl\n");
+
 	return input;
 }
 

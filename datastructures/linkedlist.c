@@ -140,8 +140,9 @@ node_t *listGet(list_t *list, int index)
 	return temp;
 }
 
-int list_length(list_t *list)
+int listLength(list_t *list)
 {
+	printf("being ll\n");
 	node_t *temp = list->head;
 
 	int i = 0;
@@ -150,11 +151,16 @@ int list_length(list_t *list)
 		i++;
 	}
 
+	i--;
+
+	printf("end ll\n");
 	return i;
 }
 
 //TODO int linkedlist_remove_str(linkedlist_t *list, char *str)
 //TODO int linkedlist_sort(linkedlist_t *list);
+//TODO void listDelete()
+
 
 void printList(list_t *list)
 {

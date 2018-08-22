@@ -10,4 +10,5 @@
 #define MAXBUF 1024
 
 void run();
+void process_input(list_t *input);
 list_t *stringToList();

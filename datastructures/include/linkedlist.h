@@ -29,5 +29,6 @@ int		listAddInt(list_t *list, int value);
 int		listAddStr(list_t *list, char str[]);
 int		listRemoveFirst(list_t *list);
 int		listRemoveLast(list_t *list);
+int		listLength(list_t *list);
 node_t  *listGet(list_t *list, int index);
 void	printList(list_t *list);
