@@ -142,7 +142,6 @@ node_t *listGet(list_t *list, int index)
 
 int listLength(list_t *list)
 {
-	printf("being ll\n");
 	node_t *temp = list->head;
 
 	int i = 0;
@@ -153,7 +152,6 @@ int listLength(list_t *list)
 
 	i--;
 
-	printf("end ll\n");
 	return i;
 }
 

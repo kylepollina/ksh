@@ -30,16 +30,17 @@ void run()
 		list_t *input = stringToList(input_str);
 
 		if(listLength(input) >= 1){
+
 			node_t *first = input->head->next;
-
-			if(strcmp(first->str, "q") == 0 || strcmp(first->str, "Q") == 0)
-				break;
 			
-			process_input(input);
+			if(first->id == ID_STR){
+				if(strcmp(first->str, "q") == 0 || strcmp(first->str, "Q") == 0)
+					break;
+			}
+			else{
+				process_input(input);
+			}	
 		}	
-
-		else
-			printf("WOOOPS\n");
 	} 
 
 	free(input_str);
@@ -48,7 +49,6 @@ void run()
 //TODO document
 void process_input(list_t *input)
 {
-	printf("begin pi\n");
 	node_t *first = input->head->next;
 	int numargs = listLength(input) - 1;
 
@@ -81,5 +81,8 @@ void process_input(list_t *input)
 			}			 
 		}
 	}	
-	else if(first->id == ID_INT){}
+	else if(first->id == ID_INT){
+
+	}
+
 }
