@@ -142,9 +142,9 @@ node_t *listGet(list_t *list, int index)
 
 int listLength(list_t *list)
 {
-	node_t *temp = list->head;
+	node_t *temp = list->head->next;
 
-	int i = 0;
+	int i = 1;
 	while(temp != list->tail){
 		temp = temp->next;
 		i++;
@@ -158,6 +158,17 @@ int listLength(list_t *list)
 //TODO int linkedlist_remove_str(linkedlist_t *list, char *str)
 //TODO int linkedlist_sort(linkedlist_t *list);
 //TODO void listDelete()
+
+// removes the first node from the list and returns the list
+list_t *popfront(list_t *list)
+{
+	node_t *temp = list->head->next;
+	list->head->next = temp->next;
+	temp->next->prev = list->head;
+
+	free(temp);
+	return list;
+}
 
 
 void printList(list_t *list)

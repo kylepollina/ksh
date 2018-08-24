@@ -32,3 +32,4 @@ int		listRemoveLast(list_t *list);
 int		listLength(list_t *list);
 node_t  *listGet(list_t *list, int index);
 void	printList(list_t *list);
+list_t *popfront(list_t *list);

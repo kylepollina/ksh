@@ -6,12 +6,6 @@
 
 int main(void)
 {
-	printf("===============================================\n");
-	printf(" sh_kyle - A 'shell' style command prompt used\n");
-	printf("           for testing and running programs\n");
-	printf("           I've made.\n");
-	printf("===============================================\n");
-	printf("                              By: Kyle Pollina\n");
 	printf("Type HELP for more options...\n");
 	printf("Type Q to quit\n");
 
@@ -36,6 +30,9 @@ void run()
 			if(first->id == ID_STR){
 				if(strcmp(first->str, "q") == 0 || strcmp(first->str, "Q") == 0)
 					break;
+					
+				else
+					process_input(input);
 			}
 			else{
 				process_input(input);
@@ -46,43 +43,59 @@ void run()
 	free(input_str);
 }
 
-//TODO document
+// processes the linked list of words. executes programs based on commands
 void process_input(list_t *input)
 {
 	node_t *first = input->head->next;
-	int numargs = listLength(input) - 1;
 
 	/* printf("id: %x\n", first->id); */
+	/* printf("input length: %d\n", listLength(input)); */
 
 	if(first->id == ID_STR){
-		// HELP
+
+		// HELP or help
 		if(strcmp(first->str, "help") == 0 || strcmp(first->str, "HELP") == 0){
-			if(numargs >= 1){
-				node_t *arg1 = first->next;
-
-				if(arg1->id == ID_STR && strcmp(arg1->str, "create") == 0){
-					printf("--create: Create can be used to create a datastructure.\n");
-					printf("--To create a doubly linked use the command\n");
-					printf("	create list\n");
-				}
-
-				else{
-					printf("--help: argument not recognized\n");
-				}
-			}
-			
-			else{
-				printf("\nsh_kyle Copyright Kyle Pollina 2018\n");
-				printf("These are the commands you can run...\n\n");
-
-				printf(" create <arg>\t\t\tCreates the given datastructure\n");
-				printf(" -create list\t\t\tCreates a doubly linked list\n");
-				printf("\nYou can also run 'help <command>' on any of the above commands\n");
-			}			 
+			help(popfront(input));
 		}
 	}	
 	else if(first->id == ID_INT){
 
 	}
 
+}
+
+// BUILT IN COMMANDS. USER MADE COMMANDS GO IN /src/usrfunc.c
+//TODO create usrfunc.c
+
+
+// HELP or help 
+void help(list_t *arguments) 
+{
+	if(listLength(arguments) >= 1){
+		node_t *arg1 = arguments->head->next;
+
+		if(arg1->id == ID_STR && strcmp(arg1->str, "create") == 0){
+			printf("\ncreate -- create can be used to create a datastructure.\n");
+			printf("To create a doubly linked use the command\n");
+			printf("	create list\n\n");
+		}
+
+		else{
+			printf("--help: argument not recognized. Try running 'help' or 'HELP'\n");
+		}
+	}
+	
+	else{
+		printf("===============================================\n");
+		printf(" sh_kyle - A 'shell' style command prompt used\n");
+		printf("           for testing and running programs\n");
+		printf("           I've made.\n");
+		printf("===============================================\n");
+		printf("                              By: Kyle Pollina\n");
+		printf("These are the commands you can run...\n\n");
+
+		printf("<command>\t\t\tDescription\n");
+		printf("create <arg>\t\t\tCreates the given datastructure\n");
+		printf("\nYou can also run 'help <command>' on any of the above commands\n");
+	}			 
 }
