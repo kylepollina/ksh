@@ -4,6 +4,10 @@
 
 #include "../include/linkedlist.h"
 
+
+
+
+
 // returns a pointer to newly created linked list
 list_t *newList()
 {

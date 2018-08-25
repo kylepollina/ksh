@@ -14,6 +14,7 @@ int main(void)
 	return 0;
 }
 
+//TODO document
 void run()
 {
 	char *input_str = malloc(sizeof(char) * MAXBUF); 
@@ -48,15 +49,14 @@ void process_input(list_t *input)
 {
 	node_t *first = input->head->next;
 
-	/* printf("id: %x\n", first->id); */
-	/* printf("input length: %d\n", listLength(input)); */
-
 	if(first->id == ID_STR){
 
 		// HELP or help
 		if(strcmp(first->str, "help") == 0 || strcmp(first->str, "HELP") == 0){
 			help(popfront(input));
 		}
+
+		exec_usrfunc(list_t *input);
 	}	
 	else if(first->id == ID_INT){
 
@@ -65,8 +65,6 @@ void process_input(list_t *input)
 }
 
 // BUILT IN COMMANDS. USER MADE COMMANDS GO IN /src/usrfunc.c
-//TODO create usrfunc.c
-
 
 // HELP or help 
 void help(list_t *arguments) 
