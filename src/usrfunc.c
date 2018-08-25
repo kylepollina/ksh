@@ -8,7 +8,7 @@
 //TODO THREADS BABY
 void exec_usrfunc(list_t *input)
 {
-
+	
 }
 
 /*********************
@@ -17,9 +17,3 @@ void exec_usrfunc(list_t *input)
 *      *    *    *
 *      V    V    V
 **********************/
-
-void create() {
-
-	
-
-}

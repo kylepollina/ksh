@@ -18,8 +18,9 @@ int main(void)
 void run()
 {
 	char *input_str = malloc(sizeof(char) * MAXBUF); 
-	
-	while(TRUE){
+	int status = TRUE;
+
+	do {
 		printf("sh_kyle>> ");
 		fgets(input_str, MAXBUF, stdin);
 		list_t *input = stringToList(input_str);
@@ -30,7 +31,7 @@ void run()
 			
 			if(first->id == ID_STR){
 				if(strcmp(first->str, "q") == 0 || strcmp(first->str, "Q") == 0)
-					break;
+					status = FALSE;
 					
 				else
 					process_input(input);
@@ -39,7 +40,7 @@ void run()
 				process_input(input);
 			}	
 		}	
-	} 
+	} while(status); 
 
 	free(input_str);
 }
