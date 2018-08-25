@@ -13,3 +13,4 @@ void run();
 void process_input(list_t *input);
 void help(list_t *arguments);
 list_t *stringToList();
+void exec_usrfunc(list_t *input);

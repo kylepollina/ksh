@@ -56,7 +56,7 @@ void process_input(list_t *input)
 			help(popfront(input));
 		}
 
-		exec_usrfunc(list_t *input);
+		exec_usrfunc(input);
 	}	
 	else if(first->id == ID_INT){
 
