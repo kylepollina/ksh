@@ -4,21 +4,21 @@
 
 #include "../include/sh_kyle.h"
 
-int main(void)
+int main(int argc, char **argv)
 {
 	printf("Type HELP for more options...\n");
 	printf("Type Q to quit\n");
 
-	run();	
+	sh_kyle();	
 
 	return 0;
 }
 
-//TODO document
-void run()
+// main loop
+void sh_kyle()
 {
 	char *input_str = malloc(sizeof(char) * MAXBUF); 
-	int status = TRUE;
+	int status = TRUE;      // loop status
 
 	do {
 		printf("sh_kyle>> ");
@@ -26,12 +26,13 @@ void run()
 		list_t *input = stringToList(input_str);
 
 		if(listLength(input) >= 1){
-
 			node_t *first = input->head->next;
 			
 			if(first->id == ID_STR){
-				if(strcmp(first->str, "q") == 0 || strcmp(first->str, "Q") == 0)
+				if(strcmp(first->str, "q") == 0 || strcmp(first->str, "Q") == 0) {
+                    listDelete(input);
 					status = FALSE;
+                }
 					
 				else
 					process_input(input);

@@ -6,14 +6,23 @@
 
 //TODO document
 //TODO THREADS BABY
-void exec_usrfunc(list_t *input)
+
+//
+int exec_usrfunc(list_t *input)
 {
-	
+    return 0;
+	/* node_t *first = input->head->next; */		
+
+	/* if(first->id != ID_STR){ */
+	/* 	return ERR; */
+	/* } */
+
+	/* if(first->str ==) */
 }
 
-/*********************
-*  User created functions go down here
-*      *    *    *
-*      *    *    *
-*      V    V    V
-**********************/
+/***************************************
+*  User created functions go down here *
+*      *    *    *					   *
+*      *    *    *					   *
+*      V    V    V					   *
+****************************************/

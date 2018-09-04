@@ -4,10 +4,6 @@
 
 #include "../include/linkedlist.h"
 
-
-
-
-
 // returns a pointer to newly created linked list
 list_t *newList()
 {
@@ -107,7 +103,7 @@ int listRemoveLast(list_t *list)
 	return 0;
 }
 
-//TODO document
+// looks through a list and removes the first instance of the given value
 int listRemoveInt(list_t *list, int value)
 {
 	if(list == NULL)
@@ -161,8 +157,20 @@ int listLength(list_t *list)
 
 //TODO int linkedlist_remove_str(linkedlist_t *list, char *str)
 //TODO int linkedlist_sort(linkedlist_t *list);
-//TODO void listDelete()
 
+void listDelete(list_t *list)
+{
+    node_t *node = list->head->next;
+
+    while(node != list->tail) {
+        node_t *temp = node->next;
+        free(node);
+        node = temp;
+    }
+
+    free(list->head);
+    free(list->tail);
+}
 // removes the first node from the list and returns the list
 list_t *popfront(list_t *list)
 {
