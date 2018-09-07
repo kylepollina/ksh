@@ -7,17 +7,19 @@
 //TODO document
 //TODO THREADS BABY
 
+
+
+
 //
 int exec_usrfunc(list_t *input)
 {
+	node_t *first = input->head->next;		
+
+	if(first->id != ID_STR){
+		return ERR;
+	}
     return 0;
-	/* node_t *first = input->head->next; */		
-
-	/* if(first->id != ID_STR){ */
-	/* 	return ERR; */
-	/* } */
-
-	/* if(first->str ==) */
+	
 }
 
 /***************************************
