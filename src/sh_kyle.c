@@ -23,24 +23,17 @@ void sh_kyle()
 	do {
 		printf("sh_kyle>> ");
 		fgets(input_str, MAXBUF, stdin);
-		list_t *input = stringToList(input_str);
 
-		if(listLength(input) >= 1){
-			node_t *first = input->head->next;
-			
-			if(first->id == ID_STR){
-				if(strcmp(first->str, "q") == 0 || strcmp(first->str, "Q") == 0) {
-                    listDelete(input);
-					status = FALSE;
-                }
-					
-				else
-					process_input(input);
-			}
-			else{
-				process_input(input);
-			}	
-		}	
+        char **args = ksh_split_line(input_str);
+
+        if(strcmp(args[0], "q") == 0 || strcmp(args[0], "Q") == 0){
+            status = FALSE;
+        }
+
+        else{
+            process_input(args);
+        }
+
 	} while(status); 
 
 	free(input_str);
