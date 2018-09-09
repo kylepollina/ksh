@@ -1,5 +1,10 @@
-sh_kyle - A 'shell' style command prompt used for testing and running programs I've made.
+# KSH
 
-By: Kyle Pollina
+A simple UNIX shell written in C. 
 
-https://brennan.io/2015/01/16/write-a-shell-in-c/
+Help from [https://brennan.io/2015/01/16/write-a-shell-in-c/](https://brennan.io/2015/01/16/write-a-shell-in-c/)
+
+### Todo
+* piping
+* quoting and backslashing
+* globbing
