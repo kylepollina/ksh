@@ -1,6 +1,6 @@
 // ksh.h
 //  header for ksh.c
-//  Kyle Pollina
+//  kyle pollina
 
 #include <stdio.h>
 #include <stdlib.h>
@@ -22,3 +22,5 @@ char **ksh_split_line(char *input_str);
 
 // ksh_execute.c
 int ksh_execute(char **args);
+int ksh_num_cmds();
+

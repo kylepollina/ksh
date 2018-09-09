@@ -30,6 +30,8 @@ void ksh()
             status = FALSE;
         }
 
+        status = ksh_execute(args);
+
     } while(status); 
 
     free(input_str);
