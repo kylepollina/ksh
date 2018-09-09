@@ -2,7 +2,7 @@
 //  tokenize user input into individual arguments
 //  Kyle Pollina
 
-#include "../include/sh_kyle.h"
+#include "../include/ksh.h"
 #define KSH_TOK_DELIM   " \t\r\n\a"
 #define KSH_TOK_BUFSIZE 64
 

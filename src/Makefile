@@ -1,12 +1,12 @@
  # Makefile for Cracking the Coding interview questions 
 
-all: sh
+all: ksh
 
 #ds: testing.c linkedlist.c
 #	gcc -g -Wall -o ds testing.c linkedlist.c
 
-sh: sh_kyle.c linkedlist.c stringtolist.c usrfunc.c ksh_split_line.c
-	gcc -g -Wall -o ks sh_kyle.c linkedlist.c stringtolist.c usrfunc.c ksh_split_line.c
+ksh: ksh.c linkedlist.c ksh_split_line.c 
+	gcc -g -Wall -o ksh ksh.c ksh_split_line.c 
 
 
 
