@@ -3,4 +3,10 @@
 
 #include "sh_kyle.h"
 
-void exec_usrfunc(list_t *input);
+struct cmdent {                    // entry in command table
+    char    *cname;                // name of command 
+    bool    cbuiltin;              // is this a builtin command?
+    int     (*cfunc)(int, char*[]);// function for command 
+};
+
+int exec_usrfunc(list_t *input);
